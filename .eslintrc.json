@@ -23,8 +23,6 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "rules": {
-      "react/prop-types": ["error", { "ignore": ["navigation"] }]
- }
+    "react/prop-types": ["error", { "ignore": ["navigation"] }]
   }
 }

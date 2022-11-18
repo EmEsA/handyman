@@ -5,6 +5,7 @@ export const StyledButton = styled(TouchableOpacity, {
   paddingVertical: 10,
   paddingHorizontal: 50,
   borderRadius: 5,
+  marginVertical: 20,
 
   variants: {
     backgroundVaraint: {
@@ -22,6 +23,7 @@ export const StyledButton = styled(TouchableOpacity, {
         width: 25,
         height: 25,
         borderRadius: 100,
+        marginVertical: 0,
       },
     },
     isDisabled: {

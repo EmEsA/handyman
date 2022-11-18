@@ -1,0 +1,12 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "${workspaceFolder:handyman}/test.db",
+      "name": "test"
+    }
+  ],
+  "sqltools.useNodeRuntime": true,
+  "eslint.validate": [ "javascript", "javascriptreact", "html", "typescriptreact" ],
+}

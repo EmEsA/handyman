@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { openDatabase } from './src/services/db';
+import { openDatabase } from './src/services/helpers';
 
 import { DbContext } from './src/contexts/db-context';
-import { ServicesScreen } from './src/screens/services/services-screen';
-import { NewServiceScreen } from './src/screens/new-service/new-service-screen';
-import { EditServiceScreen } from './src/screens/edit-service/edit-service-screen';
-import { MenuScreen } from './src/screens/menu/menu-screen';
+import { clearDB, initializeDbSchema, insertTestData } from './src/helpers/db';
+import { Menu } from './src/screens/menu/menu';
+import { ROUTES } from './src/screens/routes';
+import { Tariffs } from './src/screens/tariffs/tariffs-list/tariffs-list';
+import { TariffDetails } from './src/screens/tariffs/tariff-details/tariff-details';
 
 const db = openDatabase();
 
@@ -18,11 +19,13 @@ export default function App() {
   const [dbChanged, setDbChanged] = useState({});
 
   useEffect(() => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        'create table if not exists services (id INTEGER PRIMARY KEY NOT NULL, name TEXT, description TEXT, price REAL);'
-      );
-    });
+    const fn = async () => {
+      await clearDB(db);
+      await initializeDbSchema(db);
+      await insertTestData(db);
+    };
+
+    fn();
   }, []);
 
   const contextValue = { db, dbChanged, markDbChanged: () => setDbChanged({}) };
@@ -39,24 +42,21 @@ export default function App() {
         >
           <Stack.Screen
             title="Menu"
-            name="/"
-            component={MenuScreen}
+            name={ROUTES.MENU}
+            component={Menu}
             options={{ title: 'Menu' }}
           />
           <Stack.Screen
-            name="/services"
-            component={ServicesScreen}
-            options={{ title: 'List usług' }}
+            title="Cenniki"
+            name={ROUTES.TARIFFS}
+            component={Tariffs}
+            options={{ title: 'Cenniki' }}
           />
           <Stack.Screen
-            name="/services/new"
-            component={NewServiceScreen}
-            options={{ title: 'Nowa usługa' }}
-          />
-          <Stack.Screen
-            name="/services/edit"
-            component={EditServiceScreen}
-            options={{ title: 'Edytuj usługę' }}
+            title="Cennik"
+            name={ROUTES.TARIFF_DETAILS}
+            component={TariffDetails}
+            options={{ title: 'Szczegóły cennika' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

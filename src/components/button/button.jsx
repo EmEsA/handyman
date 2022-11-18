@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { CenteredText, StyledButton } from './button.styled';
 
 export const Button = ({
@@ -20,3 +23,19 @@ export const Button = ({
     </CenteredText>
   </StyledButton>
 );
+
+Button.propTypes = {
+  title: PropTypes.string,
+  backgroundVaraint: PropTypes.string,
+  textVariant: PropTypes.string,
+  disabled: PropTypes.bool,
+  size: PropTypes.string,
+};
+
+Button.defaultProps = {
+  title: '',
+  backgroundVaraint: undefined,
+  textVariant: undefined,
+  disabled: false,
+  size: undefined,
+};
