@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { View } from 'react-native';
-import { Button } from '../../components/button/button';
+
+import { Button } from '../../components/common/button/button';
 import { ROUTES } from '../routes';
 
 export const Menu = ({ navigation }) => (

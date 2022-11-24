@@ -18,7 +18,6 @@ export const createServiceHook = (service) => (initialQuery) => {
       setItems(_array);
       callback(transaction, resultSet);
     };
-
     return service.get(db, query, wrappedCallback, errorCallback);
   };
 

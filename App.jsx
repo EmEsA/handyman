@@ -8,8 +8,11 @@ import { DbContext } from './src/contexts/db-context';
 import { clearDB, initializeDbSchema, insertTestData } from './src/helpers/db';
 import { Menu } from './src/screens/menu/menu';
 import { ROUTES } from './src/screens/routes';
-import { Tariffs } from './src/screens/tariffs/tariffs-list/tariffs-list';
-import { TariffDetails } from './src/screens/tariffs/tariff-details/tariff-details';
+import { Tariffs } from './src/screens/tariffs/tariffs';
+import { TariffDetails } from './src/screens/tariff-details/tariff-details';
+import { CategoryDetails } from './src/screens/category-details/category-details';
+import { NewService } from './src/screens/new-service/new-service';
+import { EditService } from './src/screens/edit-service/edit-service';
 
 const db = openDatabase();
 
@@ -34,29 +37,41 @@ export default function App() {
     <DbContext.Provider value={contextValue}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="/"
+          initialRouteName={ROUTES.MENU}
           screenOptions={{
             headerStyle: { elevation: 0 },
             contentStyle: { padding: 10 },
           }}
         >
           <Stack.Screen
-            title="Menu"
             name={ROUTES.MENU}
             component={Menu}
             options={{ title: 'Menu' }}
           />
           <Stack.Screen
-            title="Cenniki"
             name={ROUTES.TARIFFS}
             component={Tariffs}
             options={{ title: 'Cenniki' }}
           />
           <Stack.Screen
-            title="Cennik"
             name={ROUTES.TARIFF_DETAILS}
             component={TariffDetails}
             options={{ title: 'Szczegóły cennika' }}
+          />
+          <Stack.Screen
+            name={ROUTES.CATEGORY_DETAILS}
+            component={CategoryDetails}
+            options={{ title: 'Szczegóły kategorii' }}
+          />
+          <Stack.Screen
+            name={ROUTES.NEW_SERVICE}
+            component={NewService}
+            options={{ title: 'Dodaj usługę' }}
+          />
+          <Stack.Screen
+            name={ROUTES.SERVICE_DETAILS}
+            component={EditService}
+            options={{ title: 'Edytuj usługę' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

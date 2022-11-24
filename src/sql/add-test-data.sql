@@ -4,7 +4,7 @@ VALUES ("kuchnia"),
   ("ogrod");
 
 -- add categories
-INSERT INTO categories (name, tariff_id)
+INSERT INTO categories (name, tariffId)
 VALUES ("meble", 1),
   ("agd", 1),
   ("elektryka", 1),
@@ -12,7 +12,7 @@ VALUES ("meble", 1),
   ("roboty ziemne", 2);
 
 -- add services
-INSERT INTO services (name, price, unit, category_id)
+INSERT INTO services (name, price, unit, categoryId)
 VALUES ("docinanie blatu", 30, "bok", 1),
   ("wieszanie szafek", 20, NULL, 1),
   ("podłązcenie kuchenki gazowej", 100, NULL, 2),
