@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { View } from 'react-native';
 import { isPositive } from '../../../helpers/validation';
 import { Button } from '../../common/button/button';
@@ -31,4 +33,10 @@ export const ServiceForm = ({ buttonText, service = {}, onSubmit }) => {
       />
     </View>
   );
+};
+
+ServiceForm.propTypes = {
+  buttonText: PropTypes.string,
+  service: PropTypes.object,
+  onSubmit: PropTypes.func,
 };

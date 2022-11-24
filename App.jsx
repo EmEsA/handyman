@@ -13,6 +13,7 @@ import { TariffDetails } from './src/screens/tariff-details/tariff-details';
 import { CategoryDetails } from './src/screens/category-details/category-details';
 import { NewService } from './src/screens/new-service/new-service';
 import { EditService } from './src/screens/edit-service/edit-service';
+import { HomeButon } from './src/components/common/home-button/home-button';
 
 const db = openDatabase();
 
@@ -39,14 +40,14 @@ export default function App() {
         <Stack.Navigator
           initialRouteName={ROUTES.MENU}
           screenOptions={{
-            headerStyle: { elevation: 0 },
             contentStyle: { padding: 10 },
+            headerRight: HomeButon,
           }}
         >
           <Stack.Screen
             name={ROUTES.MENU}
             component={Menu}
-            options={{ title: 'Menu' }}
+            options={{ title: 'Menu', headerRight: null }}
           />
           <Stack.Screen
             name={ROUTES.TARIFFS}
