@@ -7,7 +7,7 @@ import { useTariffs } from '../../hooks/use-tariffs';
 import { ROUTES } from '../routes';
 
 export const Tariffs = ({ navigation }) => {
-  const { addItem } = useTariffs();
+  const { addItem: addTariff } = useTariffs();
 
   return (
     <View>
@@ -15,7 +15,7 @@ export const Tariffs = ({ navigation }) => {
         backgroundVaraint="primary"
         title="Dodaj cennik"
         onPress={() => {
-          addItem({ name: 'Nowy cennik' }, (_, { insertId }) => {
+          addTariff({ name: 'Nowy cennik' }, (_, { insertId }) => {
             navigation.navigate(ROUTES.TARIFF_DETAILS, { id: insertId });
           });
         }}

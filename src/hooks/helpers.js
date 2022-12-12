@@ -9,7 +9,9 @@ export const createServiceHook = (service) => (initialQuery) => {
   const getItems = (
     query = service.defaultQuery,
     callback = () => {},
-    errorCallback = () => {}
+    errorCallback = (error) => {
+      console.log('Error:', error);
+    }
   ) => {
     const wrappedCallback = (transaction, resultSet) => {
       const {
@@ -24,7 +26,9 @@ export const createServiceHook = (service) => (initialQuery) => {
   const addItem = (
     item = service.defaultQuery,
     callback = () => {},
-    errorCallback = () => {}
+    errorCallback = (error) => {
+      console.log('Error:', error);
+    }
   ) => {
     const wrappedCallback = (transaction, resultSet) => {
       markDbChanged();
@@ -44,7 +48,9 @@ export const createServiceHook = (service) => (initialQuery) => {
   const updateItem = (
     query = service.defaultQuery,
     callback = () => {},
-    errorCallback = () => {}
+    errorCallback = (error) => {
+      console.log('Error:', error);
+    }
   ) => {
     const wrappedCallback = (transaction, resultSet) => {
       markDbChanged();

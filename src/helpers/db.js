@@ -16,8 +16,10 @@ export const initializeDbSchema = async (db) => {
         id        INTEGER PRIMARY KEY,
         name      TEXT    NOT NULL,
         tariffId INTEGER NOT NULL,
-        FOREIGN KEY (tariffId)
+        CONSTRAINT fk_tariffs
+          FOREIGN KEY (tariffId)
           REFERENCES tariffs (id)
+          ON DELETE CASCADE
       );`
     );
   });
@@ -31,7 +33,8 @@ export const initializeDbSchema = async (db) => {
         price       NUMERIC NOT NULL,
         unit       TEXT    NULL,
         categoryId INTEGER NOT NULL,
-        FOREIGN KEY (categoryId)
+        CONSTRAINT fk_categories
+          FOREIGN KEY (categoryId)
           REFERENCES categories (id)
       );`
     );

@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to Hermes application - Experimental",
+      "request": "attach",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "address": "localhost:4000"
+    },
+    {
       "name": "Debug in Exponent",
       "request": "launch",
       "type": "reactnative",
@@ -16,10 +23,9 @@
       "name": "Attach to packager",
       "request": "attach",
       "type": "reactnative",
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}"
       // "address": "exp://192.168.0.192",
       // "port": 19000
-    },
-
+    }
   ]
 }

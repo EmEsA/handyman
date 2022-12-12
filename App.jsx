@@ -12,8 +12,10 @@ import { Tariffs } from './src/screens/tariffs/tariffs';
 import { TariffDetails } from './src/screens/tariff-details/tariff-details';
 import { CategoryDetails } from './src/screens/category-details/category-details';
 import { NewService } from './src/screens/new-service/new-service';
-import { EditService } from './src/screens/edit-service/edit-service';
+import { ServiceDetails } from './src/screens/service-details/service-details';
 import { HomeButon } from './src/components/common/home-button/home-button';
+import { Estimates } from './src/screens/estimates/estimates';
+import { EstimateDetails } from './src/screens/estimate-details/estimate-details';
 
 const db = openDatabase();
 
@@ -71,8 +73,18 @@ export default function App() {
           />
           <Stack.Screen
             name={ROUTES.SERVICE_DETAILS}
-            component={EditService}
+            component={ServiceDetails}
             options={{ title: 'Edytuj usługę' }}
+          />
+          <Stack.Screen
+            name={ROUTES.ESTIMATES}
+            component={Estimates}
+            options={{ title: 'Historia wycen' }}
+          />
+          <Stack.Screen
+            name={ROUTES.ESTIMATE_DETAILS}
+            component={EstimateDetails}
+            options={{ title: 'Edycja wyceny' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

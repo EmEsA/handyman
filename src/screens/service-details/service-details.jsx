@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useServices } from '../../hooks/use-services';
 import { ServiceForm } from '../../components/services/service-form/service-form';
 
-export const EditService = ({ route, navigation }) => {
+export const ServiceDetails = ({ route, navigation }) => {
   const { updateItem: updateService } = useServices();
   const { service } = route.params;
 
@@ -18,7 +18,7 @@ export const EditService = ({ route, navigation }) => {
   );
 };
 
-EditService.propTypes = {
+ServiceDetails.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({ service: PropTypes.object }),
   }),
