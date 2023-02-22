@@ -4,7 +4,7 @@ import { FlatList, Text } from 'react-native';
 
 import { DbContext } from '../../../contexts/db-context';
 import { Modal } from '../modal/modal';
-import { Container } from './components/container.styled';
+import { FullView } from '../full-view/full-view.styled';
 
 export const ItemList = ({
   serviceHook,
@@ -34,7 +34,7 @@ export const ItemList = ({
   );
 
   return (
-    <Container>
+    <FullView>
       <Modal
         visible={modalVisible}
         confirmText="Tak"
@@ -54,7 +54,7 @@ export const ItemList = ({
         keyExtractor={(service) => service.id}
         ad
       />
-    </Container>
+    </FullView>
   );
 };
 
@@ -64,9 +64,11 @@ ItemList.propTypes = {
   onEdit: PropTypes.func.isRequired,
   itemComponent: PropTypes.func.isRequired,
   headerComponent: PropTypes.func,
+  onPressHeader: PropTypes.func,
 };
 
 ItemList.defaultProps = {
   query: {},
   headerComponent: () => null,
+  onPressHeader: () => {},
 };

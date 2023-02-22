@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
 
 import { CategoriesList } from '../../components/categories/categories-list/categories-list';
 import { Button } from '../../components/common/button/button';
@@ -8,13 +7,14 @@ import { EditableItemName } from '../../components/common/editable-item-name/edi
 import { useCategories } from '../../hooks/use-categories';
 import { ROUTES } from '../routes';
 import { useTariffs } from '../../hooks/use-tariffs';
+import { FullView } from '../../components/common/full-view/full-view.styled';
 
 export const TariffDetails = ({ route, navigation }) => {
   const { id } = route.params;
   const { addItem: addCategory } = useCategories();
 
   return (
-    <View>
+    <FullView>
       <EditableItemName id={id} itemsHook={useTariffs} />
       <Button
         backgroundVaraint="primary"
@@ -32,7 +32,7 @@ export const TariffDetails = ({ route, navigation }) => {
         }}
       />
       <CategoriesList tariffId={id} />
-    </View>
+    </FullView>
   );
 };
 

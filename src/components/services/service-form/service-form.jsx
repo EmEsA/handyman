@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { View } from 'react-native';
 import { isPositive } from '../../../helpers/validation';
 import { Button } from '../../common/button/button';
 import { Field } from '../../common/field/field';
+import { FullView } from '../../common/full-view/full-view.styled';
 
 export const ServiceForm = ({ buttonText, service = {}, onSubmit }) => {
   const [name, seteName] = useState(service.name);
@@ -16,7 +16,7 @@ export const ServiceForm = ({ buttonText, service = {}, onSubmit }) => {
   };
 
   return (
-    <View>
+    <FullView>
       <Field label="Nazwa" value={name} onChangeText={seteName} />
       <Field
         label="Cena"
@@ -31,7 +31,7 @@ export const ServiceForm = ({ buttonText, service = {}, onSubmit }) => {
         title={buttonText}
         onPress={handleSubmit}
       />
-    </View>
+    </FullView>
   );
 };
 

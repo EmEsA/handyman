@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavigationContext } from '@react-navigation/native';
 
-import { StandardHeader } from '../../common/item-list/components/header';
+import { StandardHeader } from '../../common/header/header';
 import { ItemList } from '../../common/item-list/item-list';
 import { useCategories } from '../../../hooks/use-categories';
 import { CategoryItem } from './category-item';

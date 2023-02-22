@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useServices } from '../../../hooks/use-services';
 import { NavigationContext } from '@react-navigation/native';
 import { ROUTES } from '../../../screens/routes';
-import { StandardHeader } from '../../common/item-list/components/header';
+import { StandardHeader } from '../../common/header/header';
 import { ItemList } from '../../common/item-list/item-list';
 import { ServiceItem } from './components/service-item';
 

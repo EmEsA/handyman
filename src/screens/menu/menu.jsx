@@ -1,7 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { Button } from '../../components/common/button/button';
+import { FullView } from '../../components/common/full-view/full-view.styled';
 import { useEstimates } from '../../hooks/use-estimates';
 import { ROUTES } from '../routes';
 
@@ -9,7 +9,7 @@ export const Menu = ({ navigation }) => {
   const { addItem: addEstimate } = useEstimates();
 
   return (
-    <View>
+    <FullView>
       <Button
         backgroundVaraint="primary"
         title="Nowa wycena"
@@ -29,6 +29,6 @@ export const Menu = ({ navigation }) => {
         title="Cenniki"
         onPress={() => navigation.navigate(ROUTES.TARIFFS)}
       />
-    </View>
+    </FullView>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
 
+import { FullView } from '../../components/common/full-view/full-view.styled';
 import { EstimatesList } from '../../components/estimates-list/estimates-list';
 
 export const Estimates = () => {
   return (
-    <View>
+    <FullView>
       <EstimatesList />
-    </View>
+    </FullView>
   );
 };

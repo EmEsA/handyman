@@ -1,25 +1,25 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
 
 import { ItemDropdown } from '../../components/common/item-dropdown/item-dropdown';
 import { useTariffs } from '../../hooks/use-tariffs';
 import { useCategories } from '../../hooks/use-categories';
 import { ItemList } from '../../components/common/item-list/item-list';
 import { useServices } from '../../hooks/use-services';
-import { StandardHeader } from '../../components/common/item-list/components/header';
-import { ROUTES } from '../routes';
+import { TouchableHeader } from '../../components/common/header/header';
+import { ServiceSelection } from './components/service-selection';
+import { FullView } from '../../components/common/full-view/full-view.styled';
 
-const ServicesHeader = () => <StandardHeader columns={['Dostępne usługi']} />;
-
-const ServiceSelection = ({ item }) => <Text>{item.name}</Text>;
+const AVAILABLE = 'available';
+const SELECTED = 'selected';
 
 const nullItem = { id: undefined };
 
-export const EstimateDetails = ({ route, navigation }) => {
+export const EstimateDetails = ({ route }) => {
   const { id } = route.params;
   const [selectedTariff, setSelectedTariff] = useState(nullItem);
   const [selectedCategory, setSelectedCategory] = useState(nullItem);
+  const [maximized, setMaximized] = useState();
 
   const filters = useMemo(
     () => ({
@@ -28,8 +28,33 @@ export const EstimateDetails = ({ route, navigation }) => {
     [selectedTariff.id]
   );
 
+  const maximize = (section) => {
+    switch (section) {
+      case AVAILABLE:
+        setMaximized(maximized === AVAILABLE ? undefined : AVAILABLE);
+        break;
+      case SELECTED:
+        setMaximized(maximized === SELECTED ? undefined : SELECTED);
+        break;
+      default:
+    }
+  };
+
+  const AvaialbleServicesHeader = () => (
+    <TouchableHeader
+      columns={['Dostępne usługi']}
+      onPress={() => maximize(AVAILABLE)}
+    />
+  );
+  const SelectedServicesHeader = () => (
+    <TouchableHeader
+      columns={['Wybrane usługi']}
+      onPress={() => maximize(SELECTED)}
+    />
+  );
+
   return (
-    <View>
+    <FullView>
       <ItemDropdown
         clearOnFocus={true}
         label="Cennik"
@@ -50,14 +75,27 @@ export const EstimateDetails = ({ route, navigation }) => {
         searchField="name"
         serviceHook={useCategories}
       />
-      <ItemList
-        serviceHook={useServices}
-        query={{ categoryId: selectedCategory.id }}
-        headerComponent={ServicesHeader}
-        itemComponent={ServiceSelection}
-        onEdit={() => {}}
-      />
-    </View>
+      <FullView style={{ flex: 1, display: 'flex' }}>
+        <FullView style={{ flexGrow: maximized === AVAILABLE ? 5 : 1 }}>
+          <ItemList
+            serviceHook={useServices}
+            query={{ categoryId: selectedCategory.id }}
+            headerComponent={AvaialbleServicesHeader}
+            itemComponent={ServiceSelection}
+            onEdit={() => {}}
+          />
+        </FullView>
+        <FullView style={{ flexGrow: maximized === SELECTED ? 5 : 1 }}>
+          <ItemList
+            serviceHook={useServices}
+            query={{ categoryId: selectedCategory.id }}
+            headerComponent={SelectedServicesHeader}
+            itemComponent={ServiceSelection}
+            onEdit={() => {}}
+          />
+        </FullView>
+      </FullView>
+    </FullView>
   );
 };
 
