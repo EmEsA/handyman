@@ -10,6 +10,7 @@ export const Field = ({
   value,
   onChangeText,
   onBlur,
+  onFocus,
   ...props
 }) => {
   const [focused, setFocused] = useState(false);
@@ -21,7 +22,10 @@ export const Field = ({
         {...props}
         value={value}
         onChangeText={onChangeText}
-        onFocus={() => setFocused(true)}
+        onFocus={() => {
+          setFocused(true);
+          onFocus();
+        }}
         onBlur={(e) => {
           setFocused(false);
           onBlur(e);
@@ -39,6 +43,7 @@ Field.propTypes = {
   value: PropTypes.string,
   onChangeText: PropTypes.func,
   onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 Field.defaultProps = {

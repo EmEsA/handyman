@@ -17,6 +17,7 @@ export const {
       alertColor: '#ff1744',
       shadowColor: '#000',
       textLight: '#ffffff',
+      menuColor: '#e9ebeb',
     },
   },
   media: {},

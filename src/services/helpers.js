@@ -46,6 +46,7 @@ export const createService = ({
       return false;
     }
 
+    const like = query.like || [];
     const sanitizedQuery = pick(fields)(query);
     let whereClause = '';
     const values = [];
@@ -55,21 +56,21 @@ export const createService = ({
         pipe(
           toPairs,
           tap((pairs) => {
-            pairs.forEach(([, value]) => {
-              values.push(value);
+            pairs.forEach(([key, value]) => {
+              values.push(like.includes(key) ? `%${value}%` : value);
             });
           }),
-          map(([field]) => `${field} = ?`),
-          join(', ')
+          map(
+            ([field]) => `${field} ${like.includes(field) ? 'LIKE ?' : '= ?'}`
+          ),
+          join(' AND ')
         )(sanitizedQuery);
     }
 
+    const sql = `SELECT * FROM ${tableName}` + whereClause;
+
     return db.transaction((tx) => {
-      tx.executeSql(
-        `SELECT * FROM ${tableName}` + whereClause,
-        values,
-        callback
-      );
+      tx.executeSql(sql, values, callback);
     }, null);
   },
 

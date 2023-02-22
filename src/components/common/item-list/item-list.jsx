@@ -27,7 +27,7 @@ export const ItemList = ({
 
   useEffect(() => {
     getItems(query);
-  }, [dbChanged]);
+  }, [dbChanged, query]);
 
   const renderItem = ({ item }) => (
     <ItemComponent item={item} onEdit={onEdit} onDelete={handleDelete} />
@@ -63,9 +63,10 @@ ItemList.propTypes = {
   query: PropTypes.object,
   onEdit: PropTypes.func.isRequired,
   itemComponent: PropTypes.func.isRequired,
-  headerComponent: PropTypes.func.isRequired,
+  headerComponent: PropTypes.func,
 };
 
 ItemList.defaultProps = {
   query: {},
+  headerComponent: () => null,
 };

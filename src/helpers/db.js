@@ -78,7 +78,8 @@ export const insertTestData = async (db) => {
     -- add tariffs
     INSERT INTO tariffs (name)
     VALUES ("kuchnia"),
-      ("ogrod");`
+      ("ogrod"),
+      ("obsluga");`
     );
   });
 
